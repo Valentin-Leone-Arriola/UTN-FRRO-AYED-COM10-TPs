@@ -1,6 +1,8 @@
 from getpass import getpass
 import os
 
+
+
 def crear_aereo():
     nombre_aereo = ""
     contador_arg = 0
@@ -70,7 +72,7 @@ def crear_aereo():
                     codigo_menor = "CHI y BRA"
         print("")
         print("Mayor/Mayores:", codigo_mayor,"con una cantidad de aerolineas cargadas de", mayor)
-        print("Menor/Menores:", codigo_menor, "con una cantidad de aerolineas cargas de", menor)
+        print("Menor/Menores:", codigo_menor, "con una cantidad de aerolineas cargada de", menor)
         print("")
 
 
@@ -88,14 +90,16 @@ def menu_gestion_aereo(): #menu 1
             case 1:
                 crear_aereo()
             case 2:
-                print("En construcción…")
+                input("en construcción…")
             case 3:
-                print("En construcción…")
+                input("en construcción…")
             case 4:
                 print("Volviendo al menu principal...")
             case _:
                 print("Opción no válida. Intentelo nuevamente \n")
 
+def en_construccion():
+    input("En construccion. Presione cualquier tecla para continuar")
 
 def menu_principal():
     opc = 0
@@ -113,7 +117,7 @@ def menu_principal():
             case 1:
                 menu_gestion_aereo()
             case 2:
-                print("en construccion...")
+                en_construccion()
             case 3:
                 menu_novedades()
             case 4:
@@ -123,39 +127,32 @@ def menu_principal():
             case _:
                 print("Opción no válida... \n")
 
-    #os.system('cls')
 
-if __name__ == "__main__":
+intentos = 3
+usu_admin = "a"
+contraseña_admin = "admin"
+codigo_nove1 = 121
+texto_nove1 = "por aniversario todos los vuelos tiene un %20 de descuento con cualquier medio de pago"
+fecha_ini_nove1 = "2/10/2025"
+fecha_fin_nove1 = "1/11/2025"
+codigo_nove2 = 135
+texto_nove2 = "cambio de tarifa referente al equipaje extra en pasajes turista"
+fecha_ini_nove2 = "23/6/2025"
+fecha_fin_nove2 = "23/7/2025"
+codigo_nove3 = 142
+texto_nove3 = "los vuelos con destino a Miami seran suspendidos por fuertes tormentas y posibilidad de huracan"
+fecha_ini_nove3 = "4/8/2025"
+fecha_fin_nove3 = "11/8/2025"
 
-    intentos = 3
-
-    usu_admin = "admin@ventaspasajes777.com"
-    contraseña_admin = "admin"
-
-    codigo_nove1 = 121
-    texto_nove1 = "por aniversario todos los vuelos tiene un %20 de descuento con cualquier medio de pago"
-    fecha_ini_nove1 = "2/10/2025"
-    fecha_fin_nove1 = "1/11/2025"
-
-    codigo_nove2 = 135
-    texto_nove2 = "cambio de tarifa referente al equipaje extra en pasajes turista"
-    fecha_ini_nove2 = "23/6/2025"
-    fecha_fin_nove2 = "23/7/2025"
-
-    codigo_nove3 = 142
-    texto_nove3 = "los vuelos con destino a Miami seran suspendidos por fuertes tormentas y posibilidad de huracan"
-    fecha_ini_nove3 = "4/8/2025"
-    fecha_fin_nove3 = "11/8/2025"
-
-    while intentos != 0:
-        usuario = (input("Ingrese su usuario: "))
-        contraseña = getpass("Ingrese su contraseña:") 
-        if usuario == usu_admin and contraseña == contraseña_admin: 
-                intentos = 0
-                menu_principal()
-        else:
-                intentos = intentos - 1
-                if intentos == 0: 
-                    print("Hubieron 3 intentos fallidos. Por medidas de seguridad se cerrara el programa\n")
-                else:
-                    print ("Contraseña o usuario incorrectas, le quedan", intentos,"intentos\n" )
+while intentos != 0:
+    usuario = (input("Ingrese su usuario: "))
+    contraseña = getpass("Ingrese su contraseña: ") 
+    if usuario == usu_admin and contraseña == contraseña_admin: 
+            intentos = 0
+            menu_principal()
+    else:
+            intentos = intentos - 1
+            if intentos == 0: 
+                print("Hubieron 3 intentos fallidos. Por medidas de seguridad se cerrara el programa\n")
+            else:
+                print ("Contraseña o usuario incorrectas, le quedan", intentos,"intentos\n" )

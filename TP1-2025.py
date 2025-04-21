@@ -5,7 +5,7 @@ import os
 
 intentos = 3
 
-usu_admin = "admin@ventaspasajes777.com"
+usu_admin = "a"
 contraseña_admin = "admin"
 
 
@@ -25,7 +25,15 @@ texto_nove3 = "los vuelos con destino a Miami seran suspendidos por fuertes torm
 fecha_ini_nove3 = "4/8/2025"
 fecha_fin_nove3 = "11/8/2025"
 
-def Editar_nov(): #menu3_2 
+def menu_editar_nov():
+        print("NO QUITAR seleccione algun aspecto editable: \n")
+        print("1) codigo")
+        print("2) descripcion")
+        print("3) fecha de inicio")
+        print("4) fecha de finalizacion")
+        print("5) volver")
+
+def editar_nov(): #menu3_2 
     global codigo_nove1, codigo_nove2, codigo_nove3, texto_nove1, texto_nove2, texto_nove3, fecha_ini_nove1, fecha_ini_nove2, fecha_ini_nove3, fecha_fin_nove1, fecha_ini_nove2, fecha_fin_nove3
     print("seleccione una novedad para editar: \n")
     print("1) Novedad 1")
@@ -36,12 +44,7 @@ def Editar_nov(): #menu3_2
     while menu3_2 != 4:
         if menu3_2 == 1:
             os.system('cls')
-            print("seleccione algun aspecto editable: \n")
-            print("1) codigo")
-            print("2) descripcion")
-            print("3) fecha de inicio")
-            print("4) fecha de finalizacion")
-            print("5) volver")
+            menu_editar_nov()
             menu3_2_1 = int(input("seleccione una opcion: "))
             while menu3_2_1 != 5:
                 if menu3_2_1 == 1:
@@ -63,22 +66,12 @@ def Editar_nov(): #menu3_2
                 else:
                     os.system('cls')
                     print("Opción no válida... \n")
-                print("seleccione algun aspecto editable: \n")
-                print("1) codigo")
-                print("2) descripcion")
-                print("3) fecha de inicio")
-                print("4) fecha de finalizacion")
-                print("5) volver")
+                menu_editar_nov()
                 menu3_2_1 = int(input("seleccione una opcion "))
             os.system('cls')
         elif menu3_2 == 2:
             os.system('cls')
-            print("seleccione algun aspecto editable: \n")
-            print("1) codigo")
-            print("2) descripcion")
-            print("3) fecha de inicio")
-            print("4) fecha de finalizacion")
-            print("5) volver")
+            menu_editar_nov()
             menu3_2_2 = int(input("seleccione una opcion: "))
             while menu3_2_2 != 5:
                 if menu3_2_2 == 1:
@@ -100,24 +93,14 @@ def Editar_nov(): #menu3_2
                 else:
                     os.system('cls')
                     print("Opción no válida... \n")
-                print("seleccione algun aspecto editable: \n")
-                print("1) codigo")
-                print("2) descripcion")
-                print("3) fecha de inicio")
-                print("4) fecha de finalizacion")
-                print("5) volver")
+                menu_editar_nov()
                 menu3_2_2 = int(input("seleccione una opcion "))
             os.system('cls')
             
         elif menu3_2 == 3:
             os.system('cls')
             os.system('cls')
-            print("seleccione algun aspecto editable: \n")
-            print("1) codigo")
-            print("2) descripcion")
-            print("3) fecha de inicio")
-            print("4) fecha de finalizacion")
-            print("5) volver")
+            menu_editar_nov()
             menu3_2_3 = int(input("seleccione una opcion: "))
             while menu3_2_3 != 5:
                 if menu3_2_3 == 1:
@@ -139,12 +122,7 @@ def Editar_nov(): #menu3_2
                 else:
                     os.system('cls')
                     print("Opción no válida... \n")
-                print("seleccione algun aspecto editable: \n")
-                print("1) codigo")
-                print("2) descripcion")
-                print("3) fecha de inicio")
-                print("4) fecha de finalizacion")
-                print("5) volver")
+                menu_editar_nov()
                 menu3_2_3 = int(input("seleccione una opcion "))
             os.system('cls')
         else:
@@ -158,6 +136,9 @@ def Editar_nov(): #menu3_2
         menu3_2 = int(input("\nSeleccione una opcion: "))
     os.system('cls')
 
+
+#VER CASE EN VEZ DE IF ANIDADO Y QUITAR REDUNDANCIA DE PRINT (HACER COMO EN MENU PRINCIPAL)
+
 def Ver_nov():
     print("novedades disponibles: \n")
     print("novedad #",codigo_nove1, "descripcion:", texto_nove1 )
@@ -169,7 +150,7 @@ def Ver_nov():
     print("novedad #",codigo_nove3, "descripcion:", texto_nove3 )
     print("con fecha del", fecha_ini_nove3 ,"hasta", fecha_fin_nove3)
     print()
-    input("precione cualquier tecla para continuar")
+    input("presione cualquier tecla para continuar")
     os.system('cls')
 
 def Menu_novedades(): #menu3
@@ -205,8 +186,41 @@ def Menu_novedades(): #menu3
         menu3 = int(input("\nSeleccione una opcion: "))
     os.system('cls')
 
-def crear_aereo(): # por terminar
-    print("")
+
+#VER CASE EN VEZ DE IF ANIDADO Y QUITAR REDUNDANCIA DE PRINT (HACER COMO EN MENU PRINCIPAL)
+
+def crear_aereo():
+    nombre_aereo = ""
+    contador_arg = 0
+    contador_chi = 0
+    contador_bra = 0
+    while nombre_aereo != 'FIN':
+        nombre_aereo = input('Ingrese el nombre del aereo ("FIN" para salir)\n')
+        if nombre_aereo != "FIN":
+            codigo_IATA = 1000
+            while codigo_IATA > 999 or codigo_IATA < 1:#ES NECESARIO VALIDAR QUE NO SEA NEGATIVO?
+                codigo_IATA = int(input("\nIngrese el codigo IATA\n"))
+                if codigo_IATA > 999 or codigo_IATA < 1:
+                    print("\nEl codigo debe ser de un maximo de 3 digitos y mayor a 0. Intentelo nuevamente.\n")
+            descripcion = input("\nIngrese la descripcion del vuelo\n")
+            codigo_pais = ""
+            while codigo_pais != "ARG" and codigo_pais != "CHI" and codigo_pais != "BRA":
+                print("\nCodigo de pais:")
+                print('- "ARG"')
+                print('- "CHI"')
+                print('- "BRA"')
+                codigo_pais = input("Ingrese la opcion que desea (SIN ESPACIOS O CARACTERES ESPECIALES Y TODO EN MAYUSCULAS)\n")
+                print("")
+                match codigo_pais:
+                    case "ARG":
+                        contador_arg+=1
+                    case "CHI":
+                        contador_chi+=1
+                    case "BRA":
+                        contador_bra+=1
+                    case _:
+                        print("Opcion invalida. Intentelo nuevamente\n")
+
 
 def Menu_gestion_aereo(): #menu1
     print("Menú de gestion de aerolineas: \n")
@@ -236,6 +250,8 @@ def Menu_gestion_aereo(): #menu1
         menu1 = int(input("\nSeleccione una opcion: "))
     os.system('cls')
 
+#VER CASE EN VEZ DE IF ANIDADO Y QUITAR REDUNDANCIA DE PRINT (HACER COMO EN MENU PRINCIPAL)
+
 def Menu_report (): #menu 4
     print("Menú de reportes: \n")
     print("1) Reporte de ventas (confirmadas)")
@@ -264,49 +280,47 @@ def Menu_report (): #menu 4
         menu4 = int(input("\nSeleccione una opcion: "))
     os.system('cls')
 
+#VER CASE EN VEZ DE IF ANIDADO Y QUITAR REDUNDANCIA DE PRINT (HACER COMO EN MENU PRINCIPAL)
+
+
+
+
 def menu_principal():
-    print("Menú principal: \n")
-    print("1) Gestion de aerolineas")
-    print("2) Aprobar/Denergar promos")
-    print("3) Gestion de novedades")
-    print("4) Reportes")
-    print("5) Salir")
-    menu = int(input("\nSeleccione un menú: "))
-    while menu != 5:
-        if menu == 1:
-            os.system('cls')
-            Menu_gestion_aereo()
-        elif menu == 2:
-            os.system('cls')
-            print("en construccion...")
-        elif menu == 3:
-            os.system('cls')
-            Menu_novedades()
-        elif menu == 4:
-            os.system('cls')
-            Menu_report()
-        else:
-            os.system('cls')
-            print("Opción no válida... \n")
+    opc = 0
+    while opc != 5:
+        os.system('cls')
         print("Menú principal: \n")
         print("1) Gestion de aerolineas")
-        print("2) Aprobar/Denergar promos")
+        print("2) Aprobar/Denegar promos")
         print("3) Gestion de novedades")
         print("4) Reportes")
         print("5) Salir")
-        menu = int(input("\nSeleccione un menú: "))
-    os.system('cls')
+        opc = int(input("\nSeleccione una opcion menú: "))
+        os.system('cls')
+        if opc == 1:
+            Menu_gestion_aereo()
+        elif opc == 2:
+            print("en construccion...")
+        elif opc == 3:
+            Menu_novedades()
+        elif opc == 4:
+            Menu_report()
+        elif opc == 5:
+            print("Saliendo...")
+        else:
+            print("Opción no válida... \n")
+
+
 
 while intentos != 0:
-        usuario = (input("Ingrese su usuario: ")) 
-        if usuario == usu_admin:
-            contraseña = getpass("Ingrese su contraseña:") 
-            if contraseña == contraseña_admin: 
-                os.system('cls')
-                menu_principal()
+    usuario = (input("Ingrese su usuario: "))
+    contraseña = getpass("Ingrese su contraseña: ") 
+    if usuario == usu_admin and contraseña == contraseña_admin: 
+            intentos = 0
+            menu_principal()
+    else:
+            intentos = intentos - 1
+            if intentos == 0: 
+                print("Hubieron 3 intentos fallidos. Por medidas de seguridad se cerrara el programa\n")
             else:
-                print ("Contraseña incorrecta... le quedan", intentos-1,"intentos" )  
-                intentos = intentos - 1 
-                if intentos == 0: 
-                    print("Demasiados intentos fallidos.")
-print("\nSaliendo...")
+                print ("Contraseña o usuario incorrectas, le quedan", intentos,"intentos\n" )
