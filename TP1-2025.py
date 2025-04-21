@@ -8,8 +8,6 @@ intentos = 3
 usu_admin = "a"
 contraseña_admin = "admin"
 
-
-
 codigo_nove1 = 121
 texto_nove1 = "por aniversario todos los vuelos tiene un %20 de descuento con cualquier medio de pago"
 fecha_ini_nove1 = "2/10/2025"
