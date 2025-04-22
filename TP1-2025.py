@@ -3,26 +3,37 @@
 from getpass import getpass
 import os
 
-intentos = 3
+#VER CASE EN VEZ DE IF ANIDADO Y QUITAR REDUNDANCIA DE PRINT (HACER COMO EN MENU PRINCIPAL)
+def en_construccion():
+    input("En construccion. Presione cualquier tecla para continuar")
+    os.system('cls')
 
-usu_admin = "a"
-contraseña_admin = "admin"
+def volver():
+    input("Regresando al menu anterior. Presione cualquier tecla para continuar")
+    os.system('cls')
 
-codigo_nove1 = 121
-texto_nove1 = "por aniversario todos los vuelos tiene un %20 de descuento con cualquier medio de pago"
-fecha_ini_nove1 = "2/10/2025"
-fecha_fin_nove1 = "1/11/2025"
-
-codigo_nove2 = 135
-texto_nove2 = "cambio de tarifa referente al equipaje extra en pasajes turista"
-fecha_ini_nove2 = "23/6/2025"
-fecha_fin_nove2 = "23/7/2025"
-
-codigo_nove3 = 142
-texto_nove3 = "los vuelos con destino a Miami seran suspendidos por fuertes tormentas y posibilidad de huracan"
-fecha_ini_nove3 = "4/8/2025"
-fecha_fin_nove3 = "11/8/2025"
-
+def menu_report (): #menu 4
+    opc = 0
+    while opc != 4:
+        print("Menú de reportes: \n")
+        print("1) Reporte de ventas (confirmadas)")
+        print("2) Reporte de vuelos")
+        print("3) Reporte de usuarios")
+        print("4) Volver")
+        opc = int(input("\nSeleccione una opcion: "))
+        os.system('cls')
+        match opc:
+            case 1:
+                en_construccion()
+            case 2:
+                en_construccion()
+            case 3:
+                en_construccion()
+            case 4:
+                volver()
+            case _:
+                print("Opción no válida. Intentelo nuevamente \n")        
+    
 def menu_editar_nov():
         print("NO QUITAR seleccione algun aspecto editable: \n")
         print("1) codigo")
@@ -137,7 +148,7 @@ def editar_nov(): #menu3_2
 
 #VER CASE EN VEZ DE IF ANIDADO Y QUITAR REDUNDANCIA DE PRINT (HACER COMO EN MENU PRINCIPAL)
 
-def Ver_nov():
+def ver_nov():
     print("novedades disponibles: \n")
     print("novedad #",codigo_nove1, "descripcion:", texto_nove1 )
     print("con fecha del", fecha_ini_nove1 ,"hasta", fecha_fin_nove1)
@@ -151,42 +162,34 @@ def Ver_nov():
     input("presione cualquier tecla para continuar")
     os.system('cls')
 
-def Menu_novedades(): #menu3
-    print("Menú de novedades: \n")
-    print("1) Crear novedades")
-    print("2) Modificar novedades")
-    print("3) Eliminar novedades")
-    print("4) Ver novedades")
-    print("5) Volver")
-    menu3 = int(input("\nSeleccione una opcion: "))
-    while menu3 != 5:
-        if menu3 == 1:
-            os.system('cls')
-            print("En construcción…")
-        elif menu3 == 2:
-            os.system('cls')
-            Editar_nov()
-        elif menu3 == 3:
-            os.system('cls')
-            print("En construcción…")
-        elif menu3 == 4:
-            os.system('cls')
-            Ver_nov()
-        else:
-            os.system('cls')
-            print("Opción no válida... \n")
+def menu_novedades(): #menu3
+    opc = 0
+    while opc != 5:
         print("Menú de novedades: \n")
         print("1) Crear novedades")
         print("2) Modificar novedades")
         print("3) Eliminar novedades")
         print("4) Ver novedades")
         print("5) Volver")
-        menu3 = int(input("\nSeleccione una opcion: "))
+        opc = int(input("\nSeleccione una opcion: "))
+        os.system('cls')
+        match opc:
+            case 1:
+                en_construccion()
+            case 2:
+                editar_nov()
+            case 3:
+                en_construccion()
+            case 4:
+                ver_nov()
+            case 5:
+                volver()
+            case _:
+                print("Opción no válida. Intentelo nuevamente \n")
     os.system('cls')
 
 
 #VER CASE EN VEZ DE IF ANIDADO Y QUITAR REDUNDANCIA DE PRINT (HACER COMO EN MENU PRINCIPAL)
-
 def crear_aereo():
     nombre_aereo = ""
     contador_arg = 0
@@ -218,107 +221,125 @@ def crear_aereo():
                         contador_bra+=1
                     case _:
                         print("Opcion invalida. Intentelo nuevamente\n")
-
-
-def Menu_gestion_aereo(): #menu1
-    print("Menú de gestion de aerolineas: \n")
-    print("1) Crear aereolineas")
-    print("2) Modificar aereolinea")
-    print("3) Gestion de novedades")
-    print("4) Volver")
-    menu1 = int(input("\nSeleccione una opcion: "))
-    while menu1 != 4:
-        if menu1 == 1:
-            os.system('cls')
-            crear_aereo()
-        elif menu1 == 2:
-            os.system('cls')
-            print("En construcción…")
-        elif menu1 == 3:
-            os.system('cls')
-            print("En construcción…")
+    if contador_arg == contador_chi == contador_bra:
+        print("Los tres codigos (ARG, CHI y BRA) tienen la misma cantidad de aerolineas cargadas:", contador_arg)
+        print("")
+    else:
+        mayor = contador_arg
+        codigo_mayor = "ARG"
+        if contador_chi > mayor:
+            mayor = contador_chi
+            codigo_mayor = "CHI"
+            menor = contador_arg
+            codigo_menor = "ARG"
+        elif contador_chi == mayor:
+            codigo_mayor = "ARG y CHI"
+            menor = mayor
         else:
-            os.system('cls')
-            print("Opción no válida... \n")
+            menor = contador_chi
+            codigo_menor = "CHI"
+
+        if contador_bra > mayor:
+            mayor = contador_bra
+            codigo_mayor = "BRA"
+        elif contador_bra == mayor:
+            if codigo_mayor == "ARG":
+                codigo_mayor = "ARG y BRA"
+            else:
+                codigo_mayor = "CHI y BRA"
+        else:
+            if contador_bra < menor:
+                menor = contador_bra
+                codigo_menor = "BRA"
+            elif contador_bra == menor:
+                if codigo_menor == "ARG":
+                    codigo_menor = "ARG y BRA"
+                else:
+                    codigo_menor = "CHI y BRA"
+        print("")
+        print("Mayor/Mayores:", codigo_mayor,"con una cantidad de aerolineas cargadas de", mayor)
+        print("Menor/Menores:", codigo_menor, "con una cantidad de aerolineas cargada de", menor)
+        print("")
+    volver()
+
+def menu_gestion_aereo(): #menu 1
+    opc = 0
+    while opc != 4:
         print("Menú de gestion de aerolineas: \n")
         print("1) Crear aereolineas")
         print("2) Modificar aereolinea")
         print("3) Gestion de novedades")
         print("4) Volver")
-        menu1 = int(input("\nSeleccione una opcion: "))
-    os.system('cls')
-
-#VER CASE EN VEZ DE IF ANIDADO Y QUITAR REDUNDANCIA DE PRINT (HACER COMO EN MENU PRINCIPAL)
-
-def Menu_report (): #menu 4
-    print("Menú de reportes: \n")
-    print("1) Reporte de ventas (confirmadas)")
-    print("2) Reporte de vuelos")
-    print("3) Reporte de usuarios")
-    print("4) volver")
-    menu4 = int(input("\nSeleccione una opcion: "))
-    while menu4 != 4:
-        if menu4 == 1:
-            os.system('cls')
-            print("en construccion...")
-        elif menu4 == 2:
-            os.system('cls')
-            print("en construccion...")
-        elif menu4 == 3:
-            os.system('cls')
-            print("en construccion...")
-        else:
-            os.system('cls')
-            print("Opción no válida... \n")
-        print("Menú de reportes: \n")
-        print("1) Reporte de ventas (confirmadas)")
-        print("2) Reporte de vuelos")
-        print("3) Reporte de usuarios")
-        print("4) volver")
-        menu4 = int(input("\nSeleccione una opcion: "))
-    os.system('cls')
-
-#VER CASE EN VEZ DE IF ANIDADO Y QUITAR REDUNDANCIA DE PRINT (HACER COMO EN MENU PRINCIPAL)
-
-
-
+        opc = int(input("\nSeleccione una opcion: "))
+        os.system('cls')
+        match opc:
+            case 1:
+                crear_aereo()
+            case 2:
+                en_construccion()
+            case 3:
+                en_construccion()
+            case 4:
+                volver()
+            case _:
+                print("Opción no válida. Intentelo nuevamente \n")
 
 def menu_principal():
     opc = 0
     while opc != 5:
-        os.system('cls')
         print("Menú principal: \n")
         print("1) Gestion de aerolineas")
         print("2) Aprobar/Denegar promos")
         print("3) Gestion de novedades")
         print("4) Reportes")
         print("5) Salir")
-        opc = int(input("\nSeleccione una opcion menú: "))
+        opc = int(input("\nSeleccione una opcion: "))
         os.system('cls')
-        if opc == 1:
-            Menu_gestion_aereo()
-        elif opc == 2:
-            print("en construccion...")
-        elif opc == 3:
-            Menu_novedades()
-        elif opc == 4:
-            Menu_report()
-        elif opc == 5:
-            print("Saliendo...")
-        else:
-            print("Opción no válida... \n")
+        match opc:
+            case 1:
+                menu_gestion_aereo()
+            case 2:
+                en_construccion()
+            case 3:
+                menu_novedades()
+            case 4:
+                menu_report()
+            case 5:
+                os.system('cls')
+            case _:
+                print("Opción no válida. Intentelo nuevamente \n")
 
+intentos = 3
 
+usu_admin = "a"
+contraseña_admin = "admin"
+
+codigo_nove1 = 121
+texto_nove1 = "por aniversario todos los vuelos tiene un %20 de descuento con cualquier medio de pago"
+fecha_ini_nove1 = "2/10/2025"
+fecha_fin_nove1 = "1/11/2025"
+
+codigo_nove2 = 135
+texto_nove2 = "cambio de tarifa referente al equipaje extra en pasajes turista"
+fecha_ini_nove2 = "23/6/2025"
+fecha_fin_nove2 = "23/7/2025"
+
+codigo_nove3 = 142
+texto_nove3 = "los vuelos con destino a Miami seran suspendidos por fuertes tormentas y posibilidad de huracan"
+fecha_ini_nove3 = "4/8/2025"
+fecha_fin_nove3 = "11/8/2025"
 
 while intentos != 0:
     usuario = (input("Ingrese su usuario: "))
-    contraseña = getpass("Ingrese su contraseña: ") 
+    contraseña = getpass("Ingrese su contraseña: ")
+    os.system('cls')
     if usuario == usu_admin and contraseña == contraseña_admin: 
             intentos = 0
             menu_principal()
     else:
             intentos = intentos - 1
             if intentos == 0: 
-                print("Hubieron 3 intentos fallidos. Por medidas de seguridad se cerrara el programa\n")
+                print("\nHubieron 3 intentos fallidos. Por medidas de seguridad se cerrara el programa\n")
             else:
-                print ("Contraseña o usuario incorrectas, le quedan", intentos,"intentos\n" )
+                print ("\nContraseña o usuario incorrectas, le quedan", intentos,"intentos\n" )
+print("Se ha cerrado el programa")
