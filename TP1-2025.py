@@ -1,9 +1,27 @@
 #
-
 from getpass import getpass
 import os
 
-#VER CASE EN VEZ DE IF ANIDADO Y QUITAR REDUNDANCIA DE PRINT (HACER COMO EN MENU PRINCIPAL)
+intentos = 3
+
+usu_admin = "a"
+contraseña_admin = "admin"
+
+codigo_nove1 = 121
+texto_nove1 = "por aniversario todos los vuelos tiene un %20 de descuento con cualquier medio de pago"
+fecha_ini_nove1 = "2/10/2025"
+fecha_fin_nove1 = "1/11/2025"
+
+codigo_nove2 = 135
+texto_nove2 = "cambio de tarifa referente al equipaje extra en pasajes turista"
+fecha_ini_nove2 = "23/6/2025"
+fecha_fin_nove2 = "23/7/2025"
+
+codigo_nove3 = 142
+texto_nove3 = "los vuelos con destino a Miami seran suspendidos por fuertes tormentas y posibilidad de huracan"
+fecha_ini_nove3 = "4/8/2025"
+fecha_fin_nove3 = "11/8/2025"
+
 def en_construccion():
     input("En construccion. Presione cualquier tecla para continuar")
     os.system('cls')
@@ -33,120 +51,6 @@ def menu_report (): #menu 4
                 volver()
             case _:
                 print("Opción no válida. Intentelo nuevamente \n")        
-    
-def menu_editar_nov():
-        print("NO QUITAR seleccione algun aspecto editable: \n")
-        print("1) codigo")
-        print("2) descripcion")
-        print("3) fecha de inicio")
-        print("4) fecha de finalizacion")
-        print("5) volver")
-
-def editar_nov(): #menu3_2 
-    global codigo_nove1, codigo_nove2, codigo_nove3, texto_nove1, texto_nove2, texto_nove3, fecha_ini_nove1, fecha_ini_nove2, fecha_ini_nove3, fecha_fin_nove1, fecha_ini_nove2, fecha_fin_nove3
-    print("seleccione una novedad para editar: \n")
-    print("1) Novedad 1")
-    print("2) Novedad 2")
-    print("3) Novedad 3")
-    print("4) volver")
-    menu3_2 = int(input("\nSeleccione una opcion: "))
-    while menu3_2 != 4:
-        if menu3_2 == 1:
-            os.system('cls')
-            menu_editar_nov()
-            menu3_2_1 = int(input("seleccione una opcion: "))
-            while menu3_2_1 != 5:
-                if menu3_2_1 == 1:
-                    os.system('cls')
-                    print("el codigo actual es:", codigo_nove1)
-                    codigo_nove1= int(input("ingrese el nuevo codigo: "))
-                elif menu3_2_1 == 2:
-                    os.system('cls')
-                    print("el texto actual es:", texto_nove1)
-                    texto_nove1= str(input("ingrese el nuevo texto: "))
-                elif menu3_2_1 == 3:
-                    os.system('cls')
-                    print("la fecha actual es:", fecha_ini_nove1)
-                    fecha_ini_nove1= str(input("ingrese una nueva fecha: "))
-                elif menu3_2_1 == 4:
-                    os.system('cls')
-                    print("la fecha actual es:", fecha_fin_nove1)
-                    fecha_fin_nove2= str(input("ingrese una nueva fecha: "))
-                else:
-                    os.system('cls')
-                    print("Opción no válida... \n")
-                menu_editar_nov()
-                menu3_2_1 = int(input("seleccione una opcion "))
-            os.system('cls')
-        elif menu3_2 == 2:
-            os.system('cls')
-            menu_editar_nov()
-            menu3_2_2 = int(input("seleccione una opcion: "))
-            while menu3_2_2 != 5:
-                if menu3_2_2 == 1:
-                    os.system('cls')
-                    print("el codigo actual es:", codigo_nove2)
-                    codigo_nove2= int(input("ingrese el nuevo codigo: "))
-                elif menu3_2_2 == 2:
-                    os.system('cls')
-                    print("el texto actual es:", texto_nove2)
-                    texto_nove2= str(input("ingrese el nuevo texto: "))
-                elif menu3_2_2 == 3:
-                    os.system('cls')
-                    print("la fecha actual es:", fecha_ini_nove2)
-                    fecha_ini_nove2= str(input("ingrese una nueva fecha: "))
-                elif menu3_2_2 == 4:
-                    os.system('cls')
-                    print("la fecha actual es:", fecha_fin_nove2)
-                    fecha_fin_nove2= str(input("ingrese una nueva fecha: "))
-                else:
-                    os.system('cls')
-                    print("Opción no válida... \n")
-                menu_editar_nov()
-                menu3_2_2 = int(input("seleccione una opcion "))
-            os.system('cls')
-            
-        elif menu3_2 == 3:
-            os.system('cls')
-            os.system('cls')
-            menu_editar_nov()
-            menu3_2_3 = int(input("seleccione una opcion: "))
-            while menu3_2_3 != 5:
-                if menu3_2_3 == 1:
-                    os.system('cls')
-                    print("el codigo actual es:", codigo_nove3)
-                    codigo_nove3= int(input("ingrese el nuevo codigo: "))
-                elif menu3_2_3 == 2:
-                    os.system('cls')
-                    print("el texto actual es:", texto_nove3)
-                    texto_nove3= str(input("ingrese el nuevo texto: "))
-                elif menu3_2_3 == 3:
-                    os.system('cls')
-                    print("la fecha actual es:", fecha_ini_nove3)
-                    fecha_ini_nove3= str(input("ingrese una nueva fecha: "))
-                elif menu3_2_3 == 4:
-                    os.system('cls')
-                    print("la fecha actual es:", fecha_fin_nove3)
-                    fecha_fin_nove3= str(input("ingrese una nueva fecha: "))
-                else:
-                    os.system('cls')
-                    print("Opción no válida... \n")
-                menu_editar_nov()
-                menu3_2_3 = int(input("seleccione una opcion "))
-            os.system('cls')
-        else:
-            os.system('cls')
-            print("Opción no válida... \n")
-        print("seleccione una novedad para editar: \n")
-        print("1) Novedad 1")
-        print("2) Novedad 2")
-        print("3) Novedad 3")
-        print("4) volver")
-        menu3_2 = int(input("\nSeleccione una opcion: "))
-    os.system('cls')
-
-
-#VER CASE EN VEZ DE IF ANIDADO Y QUITAR REDUNDANCIA DE PRINT (HACER COMO EN MENU PRINCIPAL)
 
 def ver_nov():
     print("novedades disponibles: \n")
@@ -160,6 +64,102 @@ def ver_nov():
     print("con fecha del", fecha_ini_nove3 ,"hasta", fecha_fin_nove3)
     print()
     input("presione cualquier tecla para continuar")
+    os.system('cls')
+
+def menu_editar_nov():
+        print("Seleccione algun aspecto editable: \n")
+        print("1) codigo")
+        print("2) descripcion")
+        print("3) fecha de inicio")
+        print("4) fecha de finalizacion")
+        print("5) volver")
+
+def editar_nov(): #menu3_2
+    global codigo_nove1, codigo_nove2, codigo_nove3, texto_nove1, texto_nove2, texto_nove3, fecha_ini_nove1, fecha_ini_nove2, fecha_ini_nove3, fecha_fin_nove1, fecha_ini_nove2, fecha_fin_nove3
+    opc_novedad = 0
+    while opc_novedad != 4:
+        print("Lista de novedades disponibles:\n")
+        print("1) Novedad 1")
+        print("2) Novedad 2")
+        print("3) Novedad 3")
+        print("4) Volver")
+        opc_novedad = int(input("\nSeleccione una novedad para editar: "))
+        os.system('cls')
+        opc_aspecto = 0
+        match opc_novedad:
+            case 1:
+                while opc_aspecto != 5:
+                    menu_editar_nov()
+                    opc_aspecto = int(input("\nSeleccione una opcion: "))
+                    os.system('cls')    
+                    match opc_aspecto:                
+                        case 1:
+                            print("El codigo actual es:", codigo_nove1)
+                            codigo_nove1= int(input("Ingrese el nuevo codigo: "))
+                        case 2:
+                            print("El texto actual es:", texto_nove1)
+                            texto_nove1= input("Ingrese el nuevo texto: ")
+                        case 3:
+                            print("La fecha actual es:", fecha_ini_nove1)
+                            fecha_ini_nove1= input("Ingrese una nueva fecha: ")
+                        case 4:
+                            print("La fecha actual es:", fecha_fin_nove1)
+                            fecha_fin_nove2= input("Ingrese una nueva fecha: ")
+                        case 5:
+                            volver()
+                        case _:
+                            print("Opción no válida. Intentelo nuevamente")
+                    print("")
+            case 2:
+                while opc_aspecto != 5:
+                    menu_editar_nov()
+                    opc_aspecto = int(input("\nSeleccione una opcion: "))
+                    os.system('cls')
+                    match opc_aspecto:
+                        case 1:
+                            print("El codigo actual es:", codigo_nove2)
+                            codigo_nove2= int(input("Ingrese el nuevo codigo: "))
+                        case 2:
+                            print("El texto actual es:", texto_nove2)
+                            texto_nove2= input("Ingrese el nuevo texto: ")
+                        case 3:
+                            print("La fecha actual es:", fecha_ini_nove2)
+                            fecha_ini_nove2= input("Ingrese una nueva fecha: ")
+                        case 4:
+                            print("La fecha actual es:", fecha_fin_nove2)
+                            fecha_fin_nove2= input("Ingrese una nueva fecha: ")
+                        case 5:
+                            volver()
+                        case _:
+                            print("Opción no válida. Intentelo nuevamente")
+                    print("")
+            case 3:
+                while opc_aspecto != 5:
+                    menu_editar_nov()
+                    opc_aspecto = int(input("\nSeleccione una opcion: "))
+                    os.system('cls')
+                    match opc_aspecto:
+                        case 1:
+                            print("El codigo actual es:", codigo_nove3)
+                            codigo_nove3= int(input("Ingrese el nuevo codigo: "))
+                        case 2:
+                            print("El texto actual es:", texto_nove3)
+                            texto_nove3= input("Ingrese el nuevo texto: ")
+                        case 3:
+                            print("La fecha actual es:", fecha_ini_nove3)
+                            fecha_ini_nove3= input("Ingrese una nueva fecha: ")
+                        case 4:
+                            print("La fecha actual es:", fecha_fin_nove3)
+                            fecha_fin_nove3= input("Ingrese una nueva fecha: ")
+                        case 5:
+                            volver()
+                        case _:
+                            print("Opción no válida. Intentelo nuevamente")
+                    print("")
+            case 4:
+                volver()
+            case _:
+                print("Opción no válida. Intentelo nuevamente\n")
     os.system('cls')
 
 def menu_novedades(): #menu3
@@ -291,7 +291,7 @@ def menu_principal():
         print("1) Gestion de aerolineas")
         print("2) Aprobar/Denegar promos")
         print("3) Gestion de novedades")
-        print("4) Reportes")
+        print("4) Mostrar reportes")
         print("5) Salir")
         opc = int(input("\nSeleccione una opcion: "))
         os.system('cls')
@@ -308,26 +308,6 @@ def menu_principal():
                 os.system('cls')
             case _:
                 print("Opción no válida. Intentelo nuevamente \n")
-
-intentos = 3
-
-usu_admin = "a"
-contraseña_admin = "admin"
-
-codigo_nove1 = 121
-texto_nove1 = "por aniversario todos los vuelos tiene un %20 de descuento con cualquier medio de pago"
-fecha_ini_nove1 = "2/10/2025"
-fecha_fin_nove1 = "1/11/2025"
-
-codigo_nove2 = 135
-texto_nove2 = "cambio de tarifa referente al equipaje extra en pasajes turista"
-fecha_ini_nove2 = "23/6/2025"
-fecha_fin_nove2 = "23/7/2025"
-
-codigo_nove3 = 142
-texto_nove3 = "los vuelos con destino a Miami seran suspendidos por fuertes tormentas y posibilidad de huracan"
-fecha_ini_nove3 = "4/8/2025"
-fecha_fin_nove3 = "11/8/2025"
 
 while intentos != 0:
     usuario = (input("Ingrese su usuario: "))
