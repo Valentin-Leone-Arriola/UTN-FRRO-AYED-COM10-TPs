@@ -81,24 +81,21 @@ def menu_editar_nov():
         print("4) fecha de finalizacion")
         print("5) volver")
 
+def validar_codigo():
+    nuevo_codigo = -1
+    while nuevo_codigo <0:
+        nuevo_codigo = input("Ingrese el nuevo codigo (DEBE SER ENTERO POSITIVO, 0 PARA SALIR)\n")
+        if nuevo_codigo.isdigit():
+            nuevo_codigo = int(nuevo_codigo)
+        else:
+            nuevo_codigo = -1
+            print("El codigo debe ser un numero entero")
+    os.system('cls')
+    return nuevo_codigo
+
 def editar_nov(): #menu3_2
     global codigo_nove1, codigo_nove2, codigo_nove3, texto_nove1, texto_nove2, texto_nove3, fecha_ini_nove1, fecha_ini_nove2, fecha_ini_nove3, fecha_fin_nove1, fecha_ini_nove2, fecha_fin_nove3
     opc_novedad = 0
-
-    def validar_codigo():
-        nuevo_codigo = -1
-        while nuevo_codigo <0:
-            nuevo_codigo = input("Ingrese el nuevo codigo (DEBE SER ENTERO POSITIVO, 0 PARA SALIR)\n")
-            if nuevo_codigo.isdigit():
-                nuevo_codigo = int(nuevo_codigo)
-                volver()
-            else:
-                nuevo_codigo = -1
-                print("El codigo debe ser un numero entero")
-        os.system('cls')
-        return nuevo_codigo
-    
-
 
     while opc_novedad != 4:
         print("Lista de novedades disponibles:\n")
@@ -114,7 +111,7 @@ def editar_nov(): #menu3_2
             case 1:
                 while opc_aspecto != 5:
                     menu_editar_nov()
-                    opc_aspecto = opc = validar_entero()
+                    opc_aspecto = validar_entero()
                     os.system('cls')    
                     match opc_aspecto:                
                         case 1:
@@ -139,7 +136,7 @@ def editar_nov(): #menu3_2
             case 2:
                 while opc_aspecto != 5:
                     menu_editar_nov()
-                    opc_aspecto = opc = validar_entero()
+                    opc_aspecto = validar_entero()
                     os.system('cls')
                     match opc_aspecto:
                         case 1:
@@ -164,7 +161,7 @@ def editar_nov(): #menu3_2
             case 3:
                 while opc_aspecto != 5:
                     menu_editar_nov()
-                    opc_aspecto = opc = validar_entero()
+                    opc_aspecto = validar_entero()
                     os.system('cls')
                     match opc_aspecto:
                         case 1:
@@ -230,9 +227,14 @@ def crear_aereo():
         if nombre_aereo != "FIN":
             codigo_IATA = 1000
             while codigo_IATA > 999 or codigo_IATA < 1:#ES NECESARIO VALIDAR QUE NO SEA NEGATIVO?
-                codigo_IATA = int(input("\nIngrese el codigo IATA\n"))
-                if codigo_IATA > 999 or codigo_IATA < 1:
-                    print("\nEl codigo debe ser de un maximo de 3 digitos y mayor a 0. Intentelo nuevamente.\n")
+                codigo_IATA = input("\nIngrese el codigo IATA\n")
+                if codigo_IATA.isdigit():
+                    codigo_IATA = int(codigo_IATA)
+                    if codigo_IATA > 999 or codigo_IATA < 1:
+                        print("\nEl codigo debe ser de un maximo de 3 digitos y mayor a 0. Intentelo nuevamente.")
+                else:
+                    print("\nEl codigo debe ser un numero entero. Intentelo nuevamente.")
+                    codigo_IATA = 0
             descripcion = input("\nIngrese la descripcion del vuelo\n")
             codigo_pais = ""
             while codigo_pais != "ARG" and codigo_pais != "CHI" and codigo_pais != "BRA":
