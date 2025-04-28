@@ -45,7 +45,7 @@ def menu_report (): #menu 4
         print("2) Reporte de vuelos")
         print("3) Reporte de usuarios")
         print("4) Volver")
-        opc = int(input("\nSeleccione una opcion: "))
+        opc = validar_entero()
         os.system('cls')
         match opc:
             case 1:
@@ -84,25 +84,31 @@ def menu_editar_nov():
 def editar_nov(): #menu3_2
     global codigo_nove1, codigo_nove2, codigo_nove3, texto_nove1, texto_nove2, texto_nove3, fecha_ini_nove1, fecha_ini_nove2, fecha_ini_nove3, fecha_fin_nove1, fecha_ini_nove2, fecha_fin_nove3
     opc_novedad = 0
+
+    def validar_codigo(){
+
+    }
+
     while opc_novedad != 4:
         print("Lista de novedades disponibles:\n")
         print("1) Novedad 1")
         print("2) Novedad 2")
         print("3) Novedad 3")
         print("4) Volver")
-        opc_novedad = int(input("\nSeleccione una novedad para editar: "))
+        # print("\nSeleccione una novedad para editar: ")
+        opc_novedad = validar_entero()
         os.system('cls')
         opc_aspecto = 0
         match opc_novedad:
             case 1:
                 while opc_aspecto != 5:
                     menu_editar_nov()
-                    opc_aspecto = int(input("\nSeleccione una opcion: "))
+                    opc_aspecto = opc = validar_entero()
                     os.system('cls')    
                     match opc_aspecto:                
                         case 1:
                             print("El codigo actual es:", codigo_nove1)
-                            codigo_nove1= int(input("Ingrese el nuevo codigo: "))
+                            codigo_nove1 = int(input("Ingrese el nuevo codigo: "))
                         case 2:
                             print("El texto actual es:", texto_nove1)
                             texto_nove1= input("Ingrese el nuevo texto: ")
@@ -111,7 +117,7 @@ def editar_nov(): #menu3_2
                             fecha_ini_nove1= input("Ingrese una nueva fecha: ")
                         case 4:
                             print("La fecha actual es:", fecha_fin_nove1)
-                            fecha_fin_nove2= input("Ingrese una nueva fecha: ")
+                            fecha_fin_nove1= input("Ingrese una nueva fecha: ")
                         case 5:
                             volver()
                         case _:
@@ -120,7 +126,7 @@ def editar_nov(): #menu3_2
             case 2:
                 while opc_aspecto != 5:
                     menu_editar_nov()
-                    opc_aspecto = int(input("\nSeleccione una opcion: "))
+                    opc_aspecto = opc = validar_entero()
                     os.system('cls')
                     match opc_aspecto:
                         case 1:
@@ -143,7 +149,7 @@ def editar_nov(): #menu3_2
             case 3:
                 while opc_aspecto != 5:
                     menu_editar_nov()
-                    opc_aspecto = int(input("\nSeleccione una opcion: "))
+                    opc_aspecto = opc = validar_entero()
                     os.system('cls')
                     match opc_aspecto:
                         case 1:
@@ -178,7 +184,7 @@ def menu_novedades(): #menu3
         print("3) Eliminar novedades")
         print("4) Ver novedades")
         print("5) Volver")
-        opc = int(input("\nSeleccione una opcion: "))
+        opc = validar_entero()
         os.system('cls')
         match opc:
             case 1:
@@ -275,9 +281,9 @@ def menu_gestion_aereo(): #menu 1
         print("Menú de gestion de aerolineas: \n")
         print("1) Crear aereolineas")
         print("2) Modificar aereolinea")
-        print("3) Gestion de novedades")
+        print("3) Eliminar Aerolinea")
         print("4) Volver")
-        opc = int(input("\nSeleccione una opcion: "))
+        opc = validar_entero()
         os.system('cls')
         match opc:
             case 1:
@@ -300,7 +306,8 @@ def menu_principal():
         print("3) Gestion de novedades")
         print("4) Mostrar reportes")
         print("5) Salir")
-        opc = int(input("\nSeleccione una opcion: "))
+        opc = validar_entero()
+        
         os.system('cls')
         match opc:
             case 1:
