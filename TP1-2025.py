@@ -86,7 +86,19 @@ def editar_nov(): #menu3_2
     opc_novedad = 0
 
     def validar_codigo():
-        return
+        nuevo_codigo = -1
+        while nuevo_codigo <0:
+            nuevo_codigo = input("Ingrese el nuevo codigo (DEBE SER ENTERO POSITIVO, 0 PARA SALIR)\n")
+            if nuevo_codigo.isdigit():
+                nuevo_codigo = int(nuevo_codigo)
+                volver()
+            else:
+                nuevo_codigo = -1
+                print("El codigo debe ser un numero entero")
+        os.system('cls')
+        return nuevo_codigo
+    
+
 
     while opc_novedad != 4:
         print("Lista de novedades disponibles:\n")
@@ -107,7 +119,9 @@ def editar_nov(): #menu3_2
                     match opc_aspecto:                
                         case 1:
                             print("El codigo actual es:", codigo_nove1)
-                            codigo_nove1 = int(input("Ingrese el nuevo codigo: "))
+                            nuevo_codigo = validar_codigo()
+                            if nuevo_codigo != 0:
+                                codigo_nove1 = nuevo_codigo
                         case 2:
                             print("El texto actual es:", texto_nove1)
                             texto_nove1= input("Ingrese el nuevo texto: ")
@@ -130,7 +144,9 @@ def editar_nov(): #menu3_2
                     match opc_aspecto:
                         case 1:
                             print("El codigo actual es:", codigo_nove2)
-                            codigo_nove2= int(input("Ingrese el nuevo codigo: "))
+                            nuevo_codigo = validar_codigo()
+                            if nuevo_codigo != 0:
+                                codigo_nove2 = nuevo_codigo
                         case 2:
                             print("El texto actual es:", texto_nove2)
                             texto_nove2= input("Ingrese el nuevo texto: ")
@@ -153,7 +169,9 @@ def editar_nov(): #menu3_2
                     match opc_aspecto:
                         case 1:
                             print("El codigo actual es:", codigo_nove3)
-                            codigo_nove3= int(input("Ingrese el nuevo codigo: "))
+                            nuevo_codigo = validar_codigo()
+                            if nuevo_codigo != 0:
+                                codigo_nove3 = nuevo_codigo
                         case 2:
                             print("El texto actual es:", texto_nove3)
                             texto_nove3= input("Ingrese el nuevo texto: ")
