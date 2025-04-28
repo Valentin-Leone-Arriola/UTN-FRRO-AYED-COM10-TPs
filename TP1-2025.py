@@ -22,6 +22,13 @@ texto_nove3 = "los vuelos con destino a Miami seran suspendidos por fuertes torm
 fecha_ini_nove3 = "4/8/2025"
 fecha_fin_nove3 = "11/8/2025"
 
+def validar_entero():
+    opc_input = input("\nSeleccione una opción: ")
+    if opc_input.isdigit():
+        return(int(opc_input))
+    else:
+        return 0
+
 def en_construccion():
     input("En construccion. Presione cualquier tecla para continuar")
     os.system('cls')
