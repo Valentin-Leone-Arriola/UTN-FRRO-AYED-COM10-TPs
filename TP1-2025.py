@@ -85,9 +85,8 @@ def editar_nov(): #menu3_2
     global codigo_nove1, codigo_nove2, codigo_nove3, texto_nove1, texto_nove2, texto_nove3, fecha_ini_nove1, fecha_ini_nove2, fecha_ini_nove3, fecha_fin_nove1, fecha_ini_nove2, fecha_fin_nove3
     opc_novedad = 0
 
-    def validar_codigo(){
-
-    }
+    def validar_codigo():
+        return
 
     while opc_novedad != 4:
         print("Lista de novedades disponibles:\n")
