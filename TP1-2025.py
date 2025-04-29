@@ -1,6 +1,7 @@
 #
 from getpass import getpass
 import os
+from datetime import datetime
 
 intentos = 3
 
@@ -9,18 +10,16 @@ contraseña_admin = "admin"
 
 codigo_nove1 = 121
 texto_nove1 = "por aniversario todos los vuelos tiene un %20 de descuento con cualquier medio de pago"
-fecha_ini_nove1 = "2/10/2025"
-fecha_fin_nove1 = "1/11/2025"
-
+fecha_ini_nove1 = datetime(2025,10,2)
+fecha_fin_nove1 = datetime(2025,11,1)
 codigo_nove2 = 135
 texto_nove2 = "cambio de tarifa referente al equipaje extra en pasajes turista"
-fecha_ini_nove2 = "23/6/2025"
-fecha_fin_nove2 = "23/7/2025"
-
+fecha_ini_nove2 = datetime(2025,6,23)
+fecha_fin_nove2 = datetime(2025,7,23)
 codigo_nove3 = 142
 texto_nove3 = "los vuelos con destino a Miami seran suspendidos por fuertes tormentas y posibilidad de huracan"
-fecha_ini_nove3 = "4/8/2025"
-fecha_fin_nove3 = "11/8/2025"
+fecha_ini_nove3 = datetime(2025,8,4)
+fecha_fin_nove3 = datetime(2025,8,11)
 
 def validar_entero():
     opc_input = input("\nSeleccione una opción: ")
@@ -28,6 +27,31 @@ def validar_entero():
         return(int(opc_input))
     else:
         return 0
+
+def pedir_fecha_valida():
+    fecha_valida = False
+    fecha_inicio = None
+
+    while not fecha_valida:
+        dia_str = input("Ingrese el día: ")
+        mes_str = input("Ingrese el mes: ")
+        anio_str = input("Ingrese el año: ")
+
+        if dia_str.isdigit() and mes_str.isdigit() and anio_str.isdigit():
+            dia = int(dia_str)
+            mes = int(mes_str)
+            anio = int(anio_str)
+
+            try:
+                fecha_inicio = datetime(anio, mes, dia)
+                fecha_valida = True
+            except ValueError:
+                print("Error: Fecha inexistente. Verificá los valores.")
+        else:
+            print("Error: Día, mes y año deben ser números enteros.")
+
+    return fecha_inicio
+
 
 def en_construccion():
     input("En construccion. Presione cualquier tecla para continuar")
@@ -61,14 +85,17 @@ def menu_report (): #menu 4
 
 def ver_nov():
     print("novedades disponibles: \n")
-    print("novedad #",codigo_nove1, "descripcion:", texto_nove1 )
-    print("con fecha del", fecha_ini_nove1 ,"hasta", fecha_fin_nove1)
+    print("novedad #", codigo_nove1, "descripcion:", texto_nove1)
+    print("con fecha del", fecha_ini_nove1.strftime("%d/%m/%Y"),
+          "hasta", fecha_ini_nove1.strftime("%d/%m/%Y"))
     print()
-    print("novedad #",codigo_nove2, "descripcion:", texto_nove2 )
-    print("con fecha del", fecha_ini_nove2 ,"hasta", fecha_fin_nove2)
+    print("novedad #", codigo_nove2, "descripcion:", texto_nove2)
+    print("con fecha del", fecha_ini_nove2.strftime("%d/%m/%Y"),
+          "hasta", fecha_fin_nove2.strftime("%d/%m/%Y"))
     print()
-    print("novedad #",codigo_nove3, "descripcion:", texto_nove3 )
-    print("con fecha del", fecha_ini_nove3 ,"hasta", fecha_fin_nove3)
+    print("novedad #", codigo_nove3, "descripcion:", texto_nove3)
+    print("con fecha del", fecha_ini_nove3.strftime("%d/%m/%Y"),
+          "hasta", fecha_fin_nove3.strftime("%d/%m/%Y"))
     print()
     input("presione cualquier tecla para continuar")
     os.system('cls')
@@ -89,7 +116,7 @@ def validar_codigo():
             nuevo_codigo = int(nuevo_codigo)
         else:
             nuevo_codigo = -1
-            print("El codigo debe ser un numero entero")
+            print("El codigo debe ser un numero entero positivo")
     os.system('cls')
     return nuevo_codigo
 
@@ -123,11 +150,15 @@ def editar_nov(): #menu3_2
                             print("El texto actual es:", texto_nove1)
                             texto_nove1= input("Ingrese el nuevo texto: ")
                         case 3:
-                            print("La fecha actual es:", fecha_ini_nove1)
-                            fecha_ini_nove1= input("Ingrese una nueva fecha: ")
+                            print("La fecha actual es:", fecha_ini_nove1.strftime("%d/%m/%Y"))
+                            fecha_aux = pedir_fecha_valida()
+                            if fecha_aux <= fecha_fin_nove1:
+                                fecha_ini_nove1 = fecha_aux
+                            else:
+                                input("la fecha de inicio no puede venir después de la fecha de finalización")
                         case 4:
-                            print("La fecha actual es:", fecha_fin_nove1)
-                            fecha_fin_nove1= input("Ingrese una nueva fecha: ")
+                            print("La fecha actual es:", fecha_fin_nove1.strftime("%d/%m/%Y"))
+                            fecha_aux = pedir_fecha_valida() 
                         case 5:
                             volver()
                         case _:
@@ -148,11 +179,15 @@ def editar_nov(): #menu3_2
                             print("El texto actual es:", texto_nove2)
                             texto_nove2= input("Ingrese el nuevo texto: ")
                         case 3:
-                            print("La fecha actual es:", fecha_ini_nove2)
-                            fecha_ini_nove2= input("Ingrese una nueva fecha: ")
+                            print("La fecha actual es:", fecha_ini_nove2.strftime("%d/%m/%Y"))
+                            fecha_aux = pedir_fecha_valida()
+                            if fecha_aux <= fecha_fin_nove2:
+                                fecha_ini_nove2 = fecha_aux
+                            else:
+                                input("la fecha de inicio no puede venir después de la fecha de finalización")
                         case 4:
-                            print("La fecha actual es:", fecha_fin_nove2)
-                            fecha_fin_nove2= input("Ingrese una nueva fecha: ")
+                            print("La fecha actual es:", fecha_fin_nove2.strftime("%d/%m/%Y"))
+                            fecha_fin_nove2 = pedir_fecha_valida()
                         case 5:
                             volver()
                         case _:
@@ -173,11 +208,15 @@ def editar_nov(): #menu3_2
                             print("El texto actual es:", texto_nove3)
                             texto_nove3= input("Ingrese el nuevo texto: ")
                         case 3:
-                            print("La fecha actual es:", fecha_ini_nove3)
-                            fecha_ini_nove3= input("Ingrese una nueva fecha: ")
+                            print("La fecha actual es:", fecha_ini_nove3.strftime("%d/%m/%Y"))
+                            fecha_aux = pedir_fecha_valida()
+                            if fecha_aux <= fecha_fin_nove3:
+                                fecha_ini_nove3 = fecha_aux
+                            else:
+                                input("la fecha de inicio no puede venir después de la fecha de finalización")
                         case 4:
-                            print("La fecha actual es:", fecha_fin_nove3)
-                            fecha_fin_nove3= input("Ingrese una nueva fecha: ")
+                            print("La fecha actual es:", fecha_fin_nove3.strftime("%d/%m/%Y"))
+                            fecha_fin_nove3= pedir_fecha_valida()
                         case 5:
                             volver()
                         case _:
