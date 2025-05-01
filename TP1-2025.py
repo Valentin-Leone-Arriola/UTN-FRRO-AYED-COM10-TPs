@@ -1,5 +1,4 @@
-#
-import pwinput
+import pwinput #es necesario instalacion para que funcione. pip install pwinput en terminal
 import os
 from datetime import datetime
 
