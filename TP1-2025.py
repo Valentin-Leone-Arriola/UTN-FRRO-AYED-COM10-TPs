@@ -1,5 +1,5 @@
 #
-from getpass import getpass
+import pwinput
 import os
 from datetime import datetime
 
@@ -54,11 +54,11 @@ def pedir_fecha_valida():
 
 
 def en_construccion():
-    input("En construccion. Presione cualquier tecla para continuar")
+    input("En construccion. Presione enter para continuar")
     os.system('cls')
 
 def volver():
-    input("Regresando al menu anterior. Presione cualquier tecla para continuar")
+    input("Regresando al menu anterior. Presione enter para continuar")
     os.system('cls')
 
 def menu_report (): #menu 4
@@ -254,8 +254,6 @@ def menu_novedades(): #menu3
                 print("Opción no válida. Intentelo nuevamente \n")
     os.system('cls')
 
-
-#VER CASE EN VEZ DE IF ANIDADO Y QUITAR REDUNDANCIA DE PRINT (HACER COMO EN MENU PRINCIPAL)
 def crear_aereo():
     nombre_aereo = ""
     contador_arg = 0
@@ -265,7 +263,7 @@ def crear_aereo():
         nombre_aereo = input('Ingrese el nombre del aereo ("FIN" para salir)\n')
         if nombre_aereo != "FIN":
             codigo_IATA = 1000
-            while codigo_IATA > 999 or codigo_IATA < 1:#ES NECESARIO VALIDAR QUE NO SEA NEGATIVO?
+            while codigo_IATA > 999 or codigo_IATA < 1:
                 codigo_IATA = input("\nIngrese el codigo IATA\n")
                 if codigo_IATA.isdigit():
                     codigo_IATA = int(codigo_IATA)
@@ -383,7 +381,7 @@ def menu_principal():
 
 while intentos != 0:
     usuario = (input("Ingrese su usuario: "))
-    contraseña = getpass("Ingrese su contraseña: ")
+    contraseña = pwinput.pwinput(prompt="Ingrese la contraseña: ")
     os.system('cls')
     if usuario == usu_admin and contraseña == contraseña_admin: 
             intentos = 0
