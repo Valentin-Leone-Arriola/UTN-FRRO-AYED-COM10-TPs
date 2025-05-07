@@ -38,7 +38,6 @@ def pedir_fecha_valida():
             print("Error: Fecha inexistente. Verificá los valores.")
     return fecha
 
-
 def en_construccion():
     input("En construccion. Presione enter para continuar")
     os.system('cls')
@@ -86,14 +85,6 @@ def ver_nov():
     input("presione cualquier tecla para continuar")
     os.system('cls')
 
-def menu_editar_nov():
-        print("Seleccione algun aspecto editable: \n")
-        print("1) codigo")
-        print("2) descripcion")
-        print("3) fecha de inicio")
-        print("4) fecha de finalizacion")
-        print("5) volver")
-
 def validar_codigo():
     nuevo_codigo = -1
     while nuevo_codigo <0:
@@ -105,6 +96,14 @@ def validar_codigo():
             print("El codigo debe ser un numero entero positivo")
     os.system('cls')
     return nuevo_codigo
+
+def menu_editar_nov():
+        print("Seleccione algun aspecto editable: \n")
+        print("1) codigo")
+        print("2) descripcion")
+        print("3) fecha de inicio")
+        print("4) fecha de finalizacion")
+        print("5) volver")
 
 def editar_nov(): #menu3_2
     global codigo_nove1, codigo_nove2, codigo_nove3, texto_nove1, texto_nove2, texto_nove3, fecha_ini_nove1, fecha_ini_nove2, fecha_ini_nove3, fecha_fin_nove1, fecha_ini_nove2, fecha_fin_nove3
@@ -222,6 +221,8 @@ def editar_nov(): #menu3_2
     volver()
     os.system('cls')
 
+
+
 def menu_novedades(): #menu3
     opc = -1
     while opc != 5:
@@ -325,16 +326,26 @@ def crear_aereo():
         print("")
     volver()
 
+def mostrar_menu_gestion_aereo():
+        print("╔════════════════════════════════════════╗")
+        print("║      MENÚ DE GESTIÓN DE AEROLÍNEAS     ║")
+        print("╚════════════════════════════════════════╝\n")
+        print("1) Crear Aerolínea")
+        print("2) Modificar Aerolínea")
+        print("3) Eliminar Aerolínea")
+        print("4) Volver al menú principal")
+
 def menu_gestion_aereo(): #menu 1
     opc = -1
     while opc != 4:
-        print("Menú de gestion de aerolineas: \n")
-        print("1) Crear aereolineas")
-        print("2) Modificar aereolinea")
-        print("3) Eliminar Aerolinea")
-        print("4) Volver")
+        mostrar_menu_gestion_aereo()
         opc = validar_entero()
         os.system('cls')
+        while opc <1 or opc >4:
+            print("⚠️   Opción no válida. Inténtelo nuevamente.\n")
+            mostrar_menu_gestion_aereo()
+            opc = validar_entero()
+            os.system('cls')
         match opc:
             case 1:
                 crear_aereo()
@@ -344,21 +355,28 @@ def menu_gestion_aereo(): #menu 1
                 en_construccion()
             case 4:
                 volver()
-            case _:
-                print("Opción no válida. Intentelo nuevamente \n")
+
+def mostrar_menu_principal():
+    print("╔════════════════════════════════════╗")
+    print("║        ✈  MENÚ PRINCIPAL  ✈        ║")
+    print("╚════════════════════════════════════╝\n")
+    print("1) Gestión de Aerolíneas 🛩️")
+    print("2) Aprobar / Denegar Promociones💲")
+    print("3) Gestión de Novedades 📆")
+    print("4) Mostrar Reportes 📊")
+    print("5) Salir del Programa ❌")
 
 def menu_principal():
     opc = -1
     while opc != 5:
-        print("Menú principal: \n")
-        print("1) Gestion de aerolineas")
-        print("2) Aprobar/Denegar promos")
-        print("3) Gestion de novedades")
-        print("4) Mostrar reportes")
-        print("5) Salir") 
+        mostrar_menu_principal()
         opc = validar_entero()
-        
         os.system('cls')
+        while opc < 1 or opc > 5:
+            print("⚠️   Opción no válida. Inténtelo nuevamente.\n")
+            mostrar_menu_principal()
+            opc = validar_entero()
+            os.system('cls')
         match opc:
             case 1:
                 menu_gestion_aereo()
@@ -369,9 +387,7 @@ def menu_principal():
             case 4:
                 menu_report()
             case 5:
-                os.system('cls')
-            case _:
-                print("Opción no válida. Intentelo nuevamente \n")
+                os.system('cls') #se borra la consola ya que la consigna dice que con salir se abandona el sistema
 
 while intentos != 0:
     usuario = (input("Ingrese su usuario: "))
