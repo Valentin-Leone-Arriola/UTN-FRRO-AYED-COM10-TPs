@@ -124,41 +124,6 @@ def mostrar_menu_editar_nov():
     print("4) Fecha de Finalización 📅")
     print("5) Volver 🔙")
 
-def modificar_aspecto():
-    opc_aspecto = -1
-    while opc_aspecto != 5:
-        mostrar_menu_editar_nov()
-        opc_aspecto = validar_entero()
-        os.system('cls')    
-        match opc_aspecto:                
-            case 1:
-                print("El codigo actual es:", codigo_nove1)
-                nuevo_codigo = validar_codigo()
-                if nuevo_codigo != 0:
-                    codigo_nove1 = nuevo_codigo
-            case 2:
-                print("El texto actual es:", texto_nove1)
-                texto_nove1= input("Ingrese el nuevo texto: ")
-            case 3:
-                print("La fecha actual es:", fecha_ini_nove1)
-                fecha_aux = pedir_fecha_valida()
-                if datetime.strptime(fecha_aux,"%d/%m/%Y") <= datetime.strptime(fecha_fin_nove1,"%d/%m/%Y"):
-                    fecha_ini_nove1 = fecha_aux
-                else:
-                    print("La fecha de inicio no puede venir después de la fecha de finalización. Se mantuvo la fecha original")
-            case 4:
-                print("La fecha actual es:", fecha_fin_nove1)
-                fecha_aux = pedir_fecha_valida()
-                if datetime.strptime(fecha_aux,"%d/%m/%Y") >= datetime.strptime(fecha_ini_nove1,"%d/%m/%Y"):
-                    fecha_fin_nove1 = fecha_aux
-                else:
-                    print("La fecha de inicio no puede venir después de la fecha de finalización. Se mantuvo la fecha original")
-            case 5:
-                volver()
-            case _:
-                print("⚠️   Opción no válida. Inténtelo nuevamente.")
-        print("")
-
 def editar_nov(): #menu3_2
     global codigo_nove1, codigo_nove2, codigo_nove3, texto_nove1, texto_nove2, texto_nove3, fecha_ini_nove1, fecha_ini_nove2, fecha_ini_nove3, fecha_fin_nove1, fecha_ini_nove2, fecha_fin_nove3
     
