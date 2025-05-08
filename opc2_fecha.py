@@ -46,16 +46,25 @@ def volver():
     input("Regresando al menu anterior. Presione enter para continuar")
     os.system('cls')
 
+def mostrar_menu_report():
+    print("╔═════════════════════════════════════╗")
+    print("║       📊 MENÚ DE REPORTES 📊        ║")
+    print("╚═════════════════════════════════════╝\n")
+    print("1) Reporte de Ventas (Confirmadas) 💰")
+    print("2) Reporte de Vuelos ✈️")
+    print("3) Reporte de Usuarios 👥")
+    print("4) Volver 🔙")
+
 def menu_report (): #menu 4
     opc = -1
     while opc != 4:
-        print("Menú de reportes: \n")
-        print("1) Reporte de ventas (confirmadas)")
-        print("2) Reporte de vuelos")
-        print("3) Reporte de usuarios")
-        print("4) Volver")
+        mostrar_menu_report()
         opc = validar_entero()
         os.system('cls')
+        while opc <1 or opc>4:
+            mostrar_menu_report()
+            opc = validar_entero()
+            os.system('cls')
         match opc:
             case 1:
                 en_construccion()
@@ -64,11 +73,9 @@ def menu_report (): #menu 4
             case 3:
                 en_construccion()
             case 4:
-                volver()
-            case _:
-                print("Opción no válida. Intentelo nuevamente \n")        
+                volver()        
 
-def ver_nov():
+""" def ver_nov():
     print("novedades disponibles: \n")
     print("novedad #", codigo_nove1, "descripcion:", texto_nove1)
     print("con fecha del", fecha_ini_nove1,
@@ -83,6 +90,16 @@ def ver_nov():
           "hasta", fecha_fin_nove3)
     print()
     input("presione cualquier tecla para continuar")
+    os.system('cls') """
+
+def ver_nov():
+    print(f"{'N°':<4} {'Código':<12} {'Descripción':<100} {'Desde':<12} {'Hasta':<12}")
+    print("-" * 150)
+    print(f"{'1':<4} {codigo_nove1:<12} {texto_nove1:<100} {fecha_ini_nove1:<12} {fecha_ini_nove1:<12}")
+    print(f"{'2':<4} {codigo_nove2:<12} {texto_nove2:<100} {fecha_ini_nove2:<12} {fecha_fin_nove2:<12}")
+    print(f"{'3':<4} {codigo_nove3:<12} {texto_nove3:<100} {fecha_ini_nove3:<12} {fecha_fin_nove3:<12}")
+    print()
+    input("Presione enter para continuar")
     os.system('cls')
 
 def validar_codigo():
@@ -97,20 +114,58 @@ def validar_codigo():
     os.system('cls')
     return nuevo_codigo
 
-def menu_editar_nov():
-        print("Seleccione algun aspecto editable: \n")
-        print("1) codigo")
-        print("2) descripcion")
-        print("3) fecha de inicio")
-        print("4) fecha de finalizacion")
-        print("5) volver")
+def mostrar_menu_editar_nov():
+    print("╔══════════════════════════════════════╗")
+    print("║   ✏️ EDITAR ASPECTOS DE LA NOVEDAD ✏️  ║")
+    print("╚══════════════════════════════════════╝\n")
+    print("1) Código 🔢")
+    print("2) Descripción 📝")
+    print("3) Fecha de Inicio 📅")
+    print("4) Fecha de Finalización 📅")
+    print("5) Volver 🔙")
+
+def modificar_aspecto():
+    opc_aspecto = -1
+    while opc_aspecto != 5:
+        mostrar_menu_editar_nov()
+        opc_aspecto = validar_entero()
+        os.system('cls')    
+        match opc_aspecto:                
+            case 1:
+                print("El codigo actual es:", codigo_nove1)
+                nuevo_codigo = validar_codigo()
+                if nuevo_codigo != 0:
+                    codigo_nove1 = nuevo_codigo
+            case 2:
+                print("El texto actual es:", texto_nove1)
+                texto_nove1= input("Ingrese el nuevo texto: ")
+            case 3:
+                print("La fecha actual es:", fecha_ini_nove1)
+                fecha_aux = pedir_fecha_valida()
+                if datetime.strptime(fecha_aux,"%d/%m/%Y") <= datetime.strptime(fecha_fin_nove1,"%d/%m/%Y"):
+                    fecha_ini_nove1 = fecha_aux
+                else:
+                    print("La fecha de inicio no puede venir después de la fecha de finalización. Se mantuvo la fecha original")
+            case 4:
+                print("La fecha actual es:", fecha_fin_nove1)
+                fecha_aux = pedir_fecha_valida()
+                if datetime.strptime(fecha_aux,"%d/%m/%Y") >= datetime.strptime(fecha_ini_nove1,"%d/%m/%Y"):
+                    fecha_fin_nove1 = fecha_aux
+                else:
+                    print("La fecha de inicio no puede venir después de la fecha de finalización. Se mantuvo la fecha original")
+            case 5:
+                volver()
+            case _:
+                print("⚠️   Opción no válida. Inténtelo nuevamente.")
+        print("")
 
 def editar_nov(): #menu3_2
     global codigo_nove1, codigo_nove2, codigo_nove3, texto_nove1, texto_nove2, texto_nove3, fecha_ini_nove1, fecha_ini_nove2, fecha_ini_nove3, fecha_fin_nove1, fecha_ini_nove2, fecha_fin_nove3
     
-    print("Ingrese el codigo de la novedad (0 para salir)")
-    opc_novedad = validar_entero()
+    opc_novedad = -1
     while opc_novedad !=0:
+        print("Ingrese el codigo de la novedad (0 para salir)")
+        opc_novedad = validar_entero()
         while opc_novedad != 0 and opc_novedad != codigo_nove1 and opc_novedad != codigo_nove2 and opc_novedad !=codigo_nove3: #se hace con if anidados ya que la consigna dice "el sistema permitirá según el código de novedad ingresado poder editar los datos de la misma."
             print("Opcion invalida. Ingrese el codigo de la novedad (0 para salir)")
             opc_novedad = validar_entero()
@@ -118,7 +173,7 @@ def editar_nov(): #menu3_2
         opc_aspecto = -1
         if opc_novedad == codigo_nove1:
             while opc_aspecto != 5:
-                menu_editar_nov()
+                mostrar_menu_editar_nov()
                 opc_aspecto = validar_entero()
                 os.system('cls')    
                 match opc_aspecto:                
@@ -147,11 +202,11 @@ def editar_nov(): #menu3_2
                     case 5:
                         volver()
                     case _:
-                        print("Opción no válida. Intentelo nuevamente")
+                        print("⚠️   Opción no válida. Inténtelo nuevamente.")
                 print("")
         elif opc_novedad == codigo_nove2:
             while opc_aspecto != 5:
-                menu_editar_nov()
+                mostrar_menu_editar_nov()
                 opc_aspecto = validar_entero()
                 os.system('cls')
                 match opc_aspecto:
@@ -180,11 +235,11 @@ def editar_nov(): #menu3_2
                     case 5:
                         volver()
                     case _:
-                        print("Opción no válida. Intentelo nuevamente")
+                        print("⚠️   Opción no válida. Inténtelo nuevamente.")
                 print("")
         elif opc_novedad == codigo_nove3:
             while opc_aspecto != 5:
-                menu_editar_nov()
+                mostrar_menu_editar_nov()
                 opc_aspecto = validar_entero()
                 os.system('cls')
                 match opc_aspecto:
@@ -213,27 +268,32 @@ def editar_nov(): #menu3_2
                     case 5:
                         volver()
                     case _:
-                        print("Opción no válida. Intentelo nuevamente")
+                        print("⚠️   Opción no válida. Inténtelo nuevamente.")
                 print("")
-            print("Ingrese el codigo de la novedad (0 para salir)")
-            opc_novedad = validar_entero()
     os.system('cls')
     volver()
-    os.system('cls')
 
-
+def mostrar_menu_novedades():
+    print("╔═════════════════════════════════════╗")
+    print("║        📆 MENÚ DE NOVEDADES 📆      ║")
+    print("╚═════════════════════════════════════╝\n")
+    print("1) Crear Novedades ➕")
+    print("2) Modificar Novedades ✏️")
+    print("3) Eliminar Novedades 🗑️")
+    print("4) Ver Novedades 📑") 
+    print("5) Volver al Menú Principal 🔙")
 
 def menu_novedades(): #menu3
     opc = -1
     while opc != 5:
-        print("Menú de novedades: \n")
-        print("1) Crear novedades")
-        print("2) Modificar novedades")
-        print("3) Eliminar novedades")
-        print("4) Ver novedades")
-        print("5) Volver")
+        mostrar_menu_novedades()
         opc = validar_entero()
         os.system('cls')
+        while opc <1 or opc>5:
+            print("⚠️   Opción no válida. Inténtelo nuevamente.\n")
+            mostrar_menu_novedades()
+            opc = validar_entero()
+            os.system('cls')
         match opc:
             case 1:
                 en_construccion()
@@ -245,8 +305,6 @@ def menu_novedades(): #menu3
                 ver_nov()
             case 5:
                 volver()
-            case _:
-                print("Opción no válida. Intentelo nuevamente \n")
     os.system('cls')
 
 def crear_aereo():
@@ -327,13 +385,13 @@ def crear_aereo():
     volver()
 
 def mostrar_menu_gestion_aereo():
-        print("╔════════════════════════════════════════╗")
-        print("║      MENÚ DE GESTIÓN DE AEROLÍNEAS     ║")
-        print("╚════════════════════════════════════════╝\n")
-        print("1) Crear Aerolínea")
-        print("2) Modificar Aerolínea")
-        print("3) Eliminar Aerolínea")
-        print("4) Volver al menú principal")
+    print("╔════════════════════════════════════════╗")
+    print("║  🛩️  MENÚ DE GESTIÓN DE AEROLÍNEAS 🛩️    ║")
+    print("╚════════════════════════════════════════╝\n")
+    print("1) Crear Aerolínea ✈️")
+    print("2) Modificar Aerolínea ✏️")
+    print("3) Eliminar Aerolínea 🗑️")
+    print("4) Volver al Menú Principal 🔙")
 
 def menu_gestion_aereo(): #menu 1
     opc = -1
@@ -358,7 +416,7 @@ def menu_gestion_aereo(): #menu 1
 
 def mostrar_menu_principal():
     print("╔════════════════════════════════════╗")
-    print("║        ✈  MENÚ PRINCIPAL  ✈        ║")
+    print("║      🏠  MENÚ PRINCIPAL  🏠        ║")
     print("╚════════════════════════════════════╝\n")
     print("1) Gestión de Aerolíneas 🛩️")
     print("2) Aprobar / Denegar Promociones💲")
