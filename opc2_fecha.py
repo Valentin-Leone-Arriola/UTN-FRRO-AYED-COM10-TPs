@@ -1,3 +1,9 @@
+#VARIABLES: 
+# CASOS ESPECIALES (INICIALIZADOS COMO STRING Y UNA VEZ VALIDADOS UTILIZADOS COMO INT): opc_input, codigo_IATA (inicializado como entero, luego reemplazado por string en un input, y convertido a int nuevamente)
+# STRING: usu_admin, contraseña_admin, texto_nove1, texto_nove2, texto_nove3, fecha_ini_nove1, fecha_ini_nove2, fecha_ini_nove3, fecha_fin_nove1, fecha_fin_nove2, fecha_fin_nove3, fecha, fecha_aux, codigo_pais, descripcion_aereo, nombre_aereo, codigo_mayor, codigo_menor, usuario, contraseña
+# INT: intentos, codigo_nove1, codigo_nove2, codigo_nove3, opc, nuevo_codigo, opc_novedad, opc_aspecto, mayor, menor, contador_arg, contador_bra, contador_chi
+# BOOL: fecha_valida
+
 import pwinput #es necesario instalacion para que funcione. pip install pwinput en terminal
 import os
 from datetime import datetime
@@ -290,7 +296,7 @@ def crear_aereo():
                 else:
                     print("\nEl codigo debe ser un numero entero. Intentelo nuevamente.")
                     codigo_IATA = 0
-            descripcion = input("\nIngrese la descripcion del vuelo\n")
+            descripcion_aereo = input("\nIngrese la descripcion del vuelo\n")
             codigo_pais = ""
             while codigo_pais != "ARG" and codigo_pais != "CHI" and codigo_pais != "BRA":
                 print("\nCodigo de pais:")
