@@ -1,7 +1,6 @@
-#VARIABLES: 
-# CASOS ESPECIALES (INICIALIZADOS COMO STRING Y UNA VEZ VALIDADOS UTILIZADOS COMO INT): opc_input, codigo_IATA (inicializado como entero, luego reemplazado por string en un input, y convertido a int nuevamente)
+
 # STRING: usu_admin, contraseña_admin, texto_nove1, texto_nove2, texto_nove3, fecha_ini_nove1, fecha_ini_nove2, fecha_ini_nove3, fecha_fin_nove1, fecha_fin_nove2, fecha_fin_nove3, fecha, fecha_aux, codigo_pais, descripcion_aereo, nombre_aereo, codigo_mayor, codigo_menor, usuario, contraseña
-# INT: intentos, codigo_nove1, codigo_nove2, codigo_nove3, opc, nuevo_codigo, opc_novedad, opc_aspecto, mayor, menor, contador_arg, contador_bra, contador_chi
+# INT: intentos, codigo_nove1, codigo_nove2, codigo_nove3, opc, nuevo_codigo, opc_novedad, opc_aspecto, mayor, menor, contador_arg, contador_bra, contador_chi, opc_input, codigo_IATA
 # BOOL: fecha_valida
 
 import pwinput #es necesario instalacion para que funcione. pip install pwinput en terminal
@@ -79,24 +78,7 @@ def menu_report (): #menu 4
             case 3:
                 en_construccion()
             case 4:
-                volver()        
-
-""" def ver_nov():
-    print("novedades disponibles: \n")
-    print("novedad #", codigo_nove1, "descripcion:", texto_nove1)
-    print("con fecha del", fecha_ini_nove1,
-          "hasta", fecha_ini_nove1)
-    print()
-    print("novedad #", codigo_nove2, "descripcion:", texto_nove2)
-    print("con fecha del", fecha_ini_nove2,
-          "hasta", fecha_fin_nove2)
-    print()
-    print("novedad #", codigo_nove3, "descripcion:", texto_nove3)
-    print("con fecha del", fecha_ini_nove3,
-          "hasta", fecha_fin_nove3)
-    print()
-    input("presione cualquier tecla para continuar")
-    os.system('cls') """
+                volver()
 
 def ver_nov():
     print(f"{'N°':<4} {'Código':<12} {'Descripción':<100} {'Desde':<12} {'Hasta':<12}")
