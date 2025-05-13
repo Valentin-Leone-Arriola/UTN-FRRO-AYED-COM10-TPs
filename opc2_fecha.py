@@ -35,12 +35,12 @@ def validar_entero():
 def pedir_fecha_valida():
     fecha_valida = False
     while not fecha_valida:
-        fecha = input("Ingrese la fecha en formato dd/mm/aaaa")
+        fecha = input("Ingrese la fecha en formato dd/mm/aaaa: ")
         try:
             datetime.strptime(fecha,"%d/%m/%Y")
             fecha_valida = True
         except:
-            print("Error: Fecha inexistente. Verificá los valores.")
+            print("Error: Fecha inexistente. Verificá los valores.\n")
     return fecha
 
 def en_construccion():
@@ -67,6 +67,7 @@ def menu_report (): #menu 4
         opc = validar_entero()
         os.system('cls')
         while opc <1 or opc>4:
+            print("⚠️   Opción no válida. Inténtelo nuevamente.\n")
             mostrar_menu_report()
             opc = validar_entero()
             os.system('cls')
@@ -81,11 +82,15 @@ def menu_report (): #menu 4
                 volver()
 
 def ver_nov():
-    print(f"{'N°':<4} {'Código':<12} {'Descripción':<100} {'Desde':<12} {'Hasta':<12}")
-    print("-" * 150)
+    print(f"{'N°':<4} {'Codigo':<12} {'Descripcion':<100} {'Desde':<12} {'Hasta':<12}")
+    linea = "-" * 150
+    print(linea)
     print(f"{'1':<4} {codigo_nove1:<12} {texto_nove1:<100} {fecha_ini_nove1:<12} {fecha_ini_nove1:<12}")
+    print(linea)
     print(f"{'2':<4} {codigo_nove2:<12} {texto_nove2:<100} {fecha_ini_nove2:<12} {fecha_fin_nove2:<12}")
+    print(linea)
     print(f"{'3':<4} {codigo_nove3:<12} {texto_nove3:<100} {fecha_ini_nove3:<12} {fecha_fin_nove3:<12}")
+    print(linea)
     print()
     input("Presione enter para continuar")
     os.system('cls')
@@ -276,7 +281,7 @@ def crear_aereo():
                     if codigo_IATA > 999 or codigo_IATA < 1:
                         print("\nEl codigo debe ser de un maximo de 3 digitos y mayor a 0. Intentelo nuevamente.")
                 else:
-                    print("\nEl codigo debe ser un numero entero. Intentelo nuevamente.")
+                    print("\nEl codigo debe ser un numero entero positivo. Intentelo nuevamente.")
                     codigo_IATA = 0
             descripcion_aereo = input("\nIngrese la descripcion del vuelo\n")
             codigo_pais = ""
