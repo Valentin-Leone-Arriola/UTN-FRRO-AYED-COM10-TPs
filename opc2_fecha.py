@@ -125,7 +125,7 @@ def editar_nov(): #menu3_2
         print("Ingrese el codigo de la novedad (0 para salir)")
         opc_novedad = validar_entero()
         while opc_novedad != 0 and opc_novedad != codigo_nove1 and opc_novedad != codigo_nove2 and opc_novedad !=codigo_nove3: #se hace con if anidados ya que la consigna dice "el sistema permitirá según el código de novedad ingresado poder editar los datos de la misma."
-            print("Opcion invalida. Ingrese el codigo de la novedad (0 para salir)")
+            print("Opcion invalida. Ingrese el codigo de la novedad (0 para salir)") #se pide codigo ya que la consigna dice "segun codigo de novedad ingresado"
             opc_novedad = validar_entero()
         os.system('cls')
         opc_aspecto = -1
