@@ -3,14 +3,14 @@
 # INT: intentos, codigo_nove1, codigo_nove2, codigo_nove3, opc, nuevo_codigo, opc_novedad, opc_aspecto, mayor, menor, contador_arg, contador_bra, contador_chi, opc_input, codigo_IATA
 # BOOL: fecha_valida
 
-import pwinput #es necesario instalacion para que funcione. pip install pwinput en terminal
 import os
 from datetime import datetime
+import getpass
 
 intentos = 3
 
-usu_admin = "a"
-contraseña_admin = "admin"
+us_admin = "a"
+pass_admin = "admin"
 
 codigo_nove1 = 1
 texto_nove1 = "por aniversario todos los vuelos tiene un %20 de descuento con cualquier medio de pago"
@@ -127,6 +127,7 @@ def editar_nov(): #menu3_2
         while opc_novedad != 0 and opc_novedad != codigo_nove1 and opc_novedad != codigo_nove2 and opc_novedad !=codigo_nove3: #se hace con if anidados ya que la consigna dice "el sistema permitirá según el código de novedad ingresado poder editar los datos de la misma."
             print("⚠️   Opción no válida. Inténtelo nuevamente (0 para salir)") #se pide codigo ya que la consigna dice "segun codigo de novedad ingresado"
             opc_novedad = validar_entero()
+            
         os.system('cls')
         mostrar_menu_editar_nov()
         opc_aspecto = validar_entero()
@@ -266,80 +267,77 @@ def menu_novedades(): #menu3
                 volver()
     os.system('cls')
 
+def pedir_codigo_pais():
+    print("\nCodigo de pais:")
+    print('- "ARG"')
+    print('- "CHI"')
+    print('- "BRA"')
+    codigo_pais = input("Ingrese la opcion que desea (SIN ESPACIOS O CARACTERES ESPECIALES Y TODO EN MAYUSCULAS)\n")
+    print("")
+    while codigo_pais != "ARG" and codigo_pais != "CHI" and codigo_pais != "BRA":
+        print("⚠️   Opción no válida. Inténtelo nuevamente.")
+        print("\nCodigo de pais:")
+        print('- "ARG"')
+        print('- "CHI"')
+        print('- "BRA"')
+        codigo_pais = input("Ingrese la opcion que desea (SIN ESPACIOS O CARACTERES ESPECIALES Y TODO EN MAYUSCULAS)\n")
+        print("")
+    return codigo_pais
+
 def crear_aereo():
-    nombre_aereo = ""
+    nombre_aereo = input('Ingrese el nombre del aereo. Ingrese 0 para salir\n')
     contador_arg = 0
     contador_chi = 0
     contador_bra = 0
-    while nombre_aereo != 'FIN':
-        nombre_aereo = input('Ingrese el nombre del aereo ("FIN" para salir)\n')
-        if nombre_aereo != "FIN":
-            codigo_IATA = 1000
-            while codigo_IATA > 999 or codigo_IATA < 1:
-                codigo_IATA = input("\nIngrese el codigo IATA\n")
-                if codigo_IATA.isdigit():
-                    codigo_IATA = int(codigo_IATA)
-                    if codigo_IATA > 999 or codigo_IATA < 1:
-                        print("\nEl codigo debe ser de un maximo de 3 digitos y mayor a 0. Intentelo nuevamente.")
-                else:
-                    print("\nEl codigo debe ser un numero entero positivo. Intentelo nuevamente.")
-                    codigo_IATA = 0
-            descripcion_aereo = input("\nIngrese la descripcion del vuelo\n")
-            codigo_pais = ""
-            while codigo_pais != "ARG" and codigo_pais != "CHI" and codigo_pais != "BRA":
-                print("\nCodigo de pais:")
-                print('- "ARG"')
-                print('- "CHI"')
-                print('- "BRA"')
-                codigo_pais = input("Ingrese la opcion que desea (SIN ESPACIOS O CARACTERES ESPECIALES Y TODO EN MAYUSCULAS)\n")
-                print("")
-                match codigo_pais:
-                    case "ARG":
-                        contador_arg+=1
-                    case "CHI":
-                        contador_chi+=1
-                    case "BRA":
-                        contador_bra+=1
-                    case _:
-                        print("Opcion invalida. Intentelo nuevamente\n")
+    while nombre_aereo != "0":
+        codigo_IATA = 1000
+        while codigo_IATA > 999 or codigo_IATA < 1:
+            codigo_IATA = input("\nIngrese el codigo IATA\n")
+            if codigo_IATA.isdigit():
+                codigo_IATA = int(codigo_IATA)
+                if codigo_IATA > 999 or codigo_IATA < 1:
+                    print("\nEl codigo debe ser de un maximo de 3 digitos y mayor a 0. Intentelo nuevamente.")
+            else:
+                print("\nEl codigo debe ser un numero entero positivo. Intentelo nuevamente.")
+                codigo_IATA = 0
+        descripcion_aereo = input("\nIngrese la descripcion del vuelo\n")
+        codigo_pais = pedir_codigo_pais()
+        match codigo_pais:
+            case "ARG":
+                contador_arg+=1
+            case "BRA":
+                contador_bra+=1
+            case "CHI":
+                contador_chi+=1
+        os.system('cls')
+        nombre_aereo = input('Ingrese el nombre del aereo. Ingrese 0 para salir\n')
+        
     if contador_arg == contador_chi == contador_bra:
         print("Los tres codigos (ARG, CHI y BRA) tienen la misma cantidad de aerolineas cargadas:", contador_arg)
         print("")
     else:
         mayor = contador_arg
         codigo_mayor = "ARG"
-        if contador_chi > mayor:
-            mayor = contador_chi
-            codigo_mayor = "CHI"
-            menor = contador_arg
-            codigo_menor = "ARG"
-        elif contador_chi == mayor:
-            codigo_mayor = "ARG y CHI"
-            menor = mayor
-        else:
-            menor = contador_chi
-            codigo_menor = "CHI"
-
+        menor = contador_arg
+        codigo_menor = "ARG"
+        
         if contador_bra > mayor:
             mayor = contador_bra
             codigo_mayor = "BRA"
-        elif contador_bra == mayor:
-            if codigo_mayor == "ARG":
-                codigo_mayor = "ARG y BRA"
-            else:
-                codigo_mayor = "CHI y BRA"
+        elif contador_bra < menor:
+            menor = contador_bra
+            codigo_menor = "BRA"        
+        
+        if contador_chi > mayor:
+            mayor = contador_chi
+            codigo_mayor = "CHI"
         else:
-            if contador_bra < menor:
-                menor = contador_bra
-                codigo_menor = "BRA"
-            elif contador_bra == menor:
-                if codigo_menor == "ARG":
-                    codigo_menor = "ARG y BRA"
-                else:
-                    codigo_menor = "CHI y BRA"
+            menor = contador_chi
+            codigo_menor = "CHI"
+            
         print("")
-        print("Mayor/Mayores:", codigo_mayor,"con una cantidad de aerolineas cargadas de", mayor)
-        print("Menor/Menores:", codigo_menor, "con una cantidad de aerolineas cargada de", menor)
+        print("Mayor:", codigo_mayor,"con una cantidad de aerolineas cargadas de", mayor)
+        print("Menor:", codigo_menor, "con una cantidad de aerolineas cargada de", menor)
         print("")
     volver()
 
@@ -407,16 +405,16 @@ def menu_principal():
                 os.system('cls') #se borra la consola ya que la consigna dice que con salir se abandona el sistema
 
 while intentos != 0:
-    usuario = (input("Ingrese su usuario: "))
-    contraseña = pwinput.pwinput(prompt="Ingrese la contraseña: ")
+    user = (input("Ingrese su usuario: "))
+    password = getpass.getpass(prompt="Ingrese la contraseña: ")
     os.system('cls')
-    if usuario == usu_admin and contraseña == contraseña_admin: 
-            intentos = 0
+    if user == us_admin and password == pass_admin: 
+            intentos = 0 #se pone el intentos 0 para despues forzar a que se cierre el programa al cerrar cesion (segun consigna)
             menu_principal()
     else:
-            intentos = intentos - 1
-            if intentos == 0: 
-                print("\nHubieron 3 intentos fallidos. Por medidas de seguridad se cerrara el programa\n")
-            else:
-                print ("\nContraseña o usuario incorrectas, le quedan", intentos,"intentos\n" )
+        intentos = intentos - 1
+        if intentos == 0: 
+            print("\nHubieron 3 intentos fallidos. Por medidas de seguridad se cerrara el programa\n")
+        else:
+            print ("\nContraseña o usuario incorrectas, le quedan", intentos,"intentos\n" )
 print("Se ha cerrado el programa")
