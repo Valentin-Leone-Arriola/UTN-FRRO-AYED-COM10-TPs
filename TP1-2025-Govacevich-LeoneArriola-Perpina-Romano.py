@@ -1,5 +1,5 @@
 
-# STRING: usu_admin, contraseña_admin, texto_nove1, texto_nove2, texto_nove3, fecha_ini_nove1, fecha_ini_nove2, fecha_ini_nove3, fecha_fin_nove1, fecha_fin_nove2, fecha_fin_nove3, fecha, fecha_aux, codigo_pais, descripcion_aereo, nombre_aereo, codigo_mayor, codigo_menor, usuario, contraseña
+# STRING: us_admin, contrasenia_admin, texto_nove1, texto_nove2, texto_nove3, fecha_ini_nove1, fecha_ini_nove2, fecha_ini_nove3, fecha_fin_nove1, fecha_fin_nove2, fecha_fin_nove3, fecha, fecha_aux, codigo_pais, descripcion_aereo, nombre_aereo, codigo_mayor, codigo_menor, usuario, contrasenia
 # INT: intentos, codigo_nove1, codigo_nove2, codigo_nove3, opc, nuevo_codigo, opc_novedad, opc_aspecto, mayor, menor, contador_arg, contador_bra, contador_chi, opc_input, codigo_IATA
 # BOOL: fecha_valida
 
@@ -9,8 +9,8 @@ import getpass
 
 intentos = 3
 
-us_admin = "a"
-pass_admin = "admin"
+us_admin = "admin@ventaspasajes777.com"
+contrasenia_admin = "admin"
 
 codigo_nove1 = 1
 texto_nove1 = "por aniversario todos los vuelos tiene un %20 de descuento con cualquier medio de pago"
@@ -82,6 +82,22 @@ def menu_report ():
                 volver()
 
 def ver_nov():
+    print("╔═══════════════════════════════════════╗")
+    print("║    📑  NOVEDADES DISPONIBLES  📑      ║")
+    print("╚═══════════════════════════════════════╝\n")
+    linea = "-" * 150
+    print("Novedad #",codigo_nove1, "descripcion:", texto_nove1 )
+    print("con fecha del", fecha_ini_nove1 ,"hasta", fecha_fin_nove1)
+    print(linea)
+    print("Novedad #",codigo_nove2, "Descripcion:", texto_nove2 )
+    print("con fecha del", fecha_ini_nove2 ,"hasta", fecha_fin_nove2)
+    print(linea)
+    print("Novedad #",codigo_nove3, "descripcion:", texto_nove3 )
+    print("con fecha del", fecha_ini_nove3 ,"hasta", fecha_fin_nove3)
+    print(linea)
+    volver()
+
+""" def ver_nov():
     print(f"{'N°':<4} {'Codigo':<12} {'Descripcion':<100} {'Desde':<12} {'Hasta':<12}")
     linea = "-" * 150
     print(linea)
@@ -93,7 +109,7 @@ def ver_nov():
     print(linea)
     print()
     input("Presione enter para continuar")
-    os.system('cls')
+    os.system('cls') """
 
 def validar_codigo():
     nuevo_codigo = -1
@@ -120,7 +136,7 @@ def mostrar_menu_editar_nov():
 def editar_nov(): #menu3_2
     global codigo_nove1, codigo_nove2, codigo_nove3, texto_nove1, texto_nove2, texto_nove3, fecha_ini_nove1, fecha_ini_nove2, fecha_ini_nove3, fecha_fin_nove1, fecha_ini_nove2, fecha_fin_nove3
     
-    print("Ingrese el codigo de la novedad (0 para salir)")
+    print("Ingrese el codigo de la novedad (0 para salir, inicializadas en 1-2-3)")
     opc_novedad = validar_entero()
     while opc_novedad !=0:
 
@@ -228,7 +244,7 @@ def editar_nov(): #menu3_2
                 os.system('cls')
 
         volver()
-        print("Ingrese el codigo de la novedad (0 para salir)")
+        print("Ingrese el codigo de la novedad (0 para salir, inicializadas en 1-2-3)")
         opc_novedad = validar_entero()
     os.system('cls')
     volver()
@@ -405,10 +421,10 @@ def menu_principal():
                 os.system('cls') #se borra la consola ya que la consigna dice que con salir se abandona el sistema
 
 while intentos != 0:
-    user = (input("Ingrese su usuario: "))
-    password = getpass.getpass(prompt="Ingrese la contraseña: ")
+    usuario = (input("Ingrese su usuario: "))
+    contrasenia = getpass.getpass(prompt="Ingrese la contraseña: ")
     os.system('cls')
-    if user == us_admin and password == pass_admin: 
+    if usuario == us_admin and contrasenia == contrasenia_admin: 
             intentos = 0 #se pone el intentos 0 para despues forzar a que se cierre el programa al cerrar cesion (segun consigna)
             menu_principal()
     else:
